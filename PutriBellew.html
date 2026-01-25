@@ -3,29 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Belanja Barbie Digital</title>
-    <!-- Menggunakan Font Nunito untuk tampilan yang cute dan modern -->
+    <title>Daftar Belanja Barbie Digital Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Palette Warna Barbie Digital Modern */
-            --primary-pink: #FF69B4; /* Hot Pink */
-            --soft-pink: #FFC0CB;   /* Light Pink */
-            --pale-pink: #FFE6EB;   /* Background Sangat Muda */
-            --dark-pink: #D81B60;   /* Aksen Gelap */
+            --primary-pink: #FF69B4;
+            --soft-pink: #FFC0CB;
+            --pale-pink: #FFE6EB;
+            --dark-pink: #D81B60;
             --white: #FFFFFF;
             --glass-bg: rgba(255, 255, 255, 0.75);
             --glass-border: rgba(255, 255, 255, 0.9);
             --shadow: 0 8px 32px 0 rgba(255, 105, 180, 0.15);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Nunito', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; }
 
         body {
             background: linear-gradient(135deg, #FFF0F5 0%, #FFB6C1 100%);
@@ -35,350 +28,167 @@
             position: relative;
         }
 
-        /* Container Salju Bunga */
+        /* Salju Bunga */
         #snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Agar klik tembus ke bawah */
-            z-index: 1;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1; overflow: hidden;
         }
-
         .flake {
-            position: absolute;
-            top: -10px;
-            color: var(--soft-pink);
-            font-size: 1.5rem;
-            user-select: none;
+            position: absolute; top: -10px; color: var(--soft-pink);
+            font-size: 1.5rem; user-select: none;
             animation: fall linear infinite;
             filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.8));
         }
-
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.8; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
         }
 
-        /* Layout Utama */
-        .app-container {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        .app-container { position: relative; z-index: 2; max-width: 900px; margin: 40px auto; padding: 0 20px; }
 
+        /* Header */
         header {
-            text-align: center;
-            margin-bottom: 40px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
+            text-align: center; margin-bottom: 30px;
+            background: var(--glass-bg); backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); padding: 30px;
+            border-radius: 30px; box-shadow: var(--shadow);
+        }
+        h1 { color: var(--dark-pink); font-weight: 800; font-size: 2.5rem; text-transform: uppercase; }
+        p.subtitle { color: var(--primary-pink); font-weight: 600; }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
+        }
+        .tab-btn {
+            padding: 12px 30px; border: none; border-radius: 50px;
+            font-weight: 700; font-size: 1.1rem; cursor: pointer;
+            transition: all 0.3s; background: white; color: #999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .tab-btn.active {
+            background: linear-gradient(45deg, var(--primary-pink), var(--dark-pink));
+            color: white; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            transform: scale(1.05);
         }
 
-        h1 {
-            color: var(--dark-pink);
-            font-weight: 800;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        p.subtitle {
-            color: var(--primary-pink);
-            font-weight: 600;
-        }
-
-        /* Tombol Tambah Data */
-        .action-bar {
-            text-align: right;
-            margin-bottom: 30px;
-        }
-
+        /* Action Bar */
+        .action-bar { text-align: right; margin-bottom: 20px; }
         .btn-add {
             background: linear-gradient(45deg, var(--primary-pink), var(--dark-pink));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            color: white; border: none; padding: 12px 30px; font-size: 1rem;
+            font-weight: 700; border-radius: 50px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4); transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 10px;
         }
+        .btn-add:hover { transform: translateY(-3px); }
 
-        .btn-add:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
-        }
-
-        /* Grid Kategori */
-        .category-section {
-            margin-bottom: 40px;
-            animation: fadeIn 0.8s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Category Sections */
+        .category-section { margin-bottom: 30px; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .category-title {
-            background: white;
-            display: inline-block;
-            padding: 10px 25px;
-            border-radius: 50px;
-            color: var(--dark-pink);
-            font-weight: 800;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border: 2px solid var(--pale-pink);
+            background: white; display: inline-block; padding: 8px 20px;
+            border-radius: 50px; color: var(--dark-pink); font-weight: 800;
+            font-size: 1.1rem; margin-bottom: 15px; border: 2px solid var(--pale-pink);
         }
 
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
 
-        /* Kartu Item */
+        /* Cards */
         .item-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid white;
-            border-radius: 20px;
-            padding: 20px;
-            position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
-            overflow: hidden;
+            background: var(--glass-bg); backdrop-filter: blur(10px);
+            border: 1px solid white; border-radius: 20px; padding: 20px;
+            position: relative; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
+            display: flex; align-items: center; gap: 15px;
         }
+        .item-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3); }
 
-        .item-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--primary-pink);
+        /* Custom Checkbox */
+        .checkbox-wrapper { position: relative; width: 25px; height: 25px; flex-shrink: 0; }
+        .custom-checkbox {
+            appearance: none; width: 100%; height: 100%;
+            border: 2px solid var(--primary-pink); border-radius: 8px;
+            cursor: pointer; transition: all 0.2s; display: grid; place-content: center;
         }
-
-        .item-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+        .custom-checkbox::before {
+            content: "✔"; color: white; font-size: 14px; transform: scale(0);
+            transition: 0.2s transform ease-in-out;
         }
-
-        .item-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
+        .custom-checkbox:checked {
+            background-color: var(--primary-pink); border-color: var(--primary-pink);
         }
+        .custom-checkbox:checked::before { transform: scale(1); }
 
-        .item-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .item-unit {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 15px;
-            background: var(--pale-pink);
-            padding: 4px 10px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-
-        .item-price {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--dark-pink);
-            text-align: right;
-            display: block;
+        /* Card Content */
+        .card-details { flex-grow: 1; }
+        .item-icon { font-size: 2rem; display: block; margin-bottom: 5px; }
+        .item-name { font-size: 1rem; font-weight: 700; color: #333; display: block; }
+        .item-unit { font-size: 0.85rem; color: #888; }
+        .item-price { 
+            font-size: 1rem; font-weight: 800; color: var(--dark-pink); 
+            margin-top: 5px; display: block; 
         }
 
         .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: transparent;
-            border: none;
-            color: #ffcad4;
-            cursor: pointer;
-            font-size: 1.2rem;
+            background: none; border: none; color: #ffcad4; cursor: pointer; font-size: 1.2rem;
             transition: color 0.2s;
         }
-        
-        .delete-btn:hover {
-            color: red;
-        }
+        .delete-btn:hover { color: red; }
 
-        /* Modal Form */
+        /* Modal & Form (Same as before) */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 192, 203, 0.4);
-            backdrop-filter: blur(5px);
-            z-index: 100;
-            display: none; /* Hidden by default */
-            align-items: center;
-            justify-content: center;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 192, 203, 0.4); backdrop-filter: blur(5px);
+            z-index: 100; display: none; align-items: center; justify-content: center;
         }
-
         .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 30px;
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            border: 3px solid var(--soft-pink);
+            background: white; padding: 30px; border-radius: 30px; width: 90%; max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 3px solid var(--soft-pink);
             animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--dark-pink);
-            font-weight: 800;
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--pale-pink);
-            border-radius: 15px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-            background: #FFFAFB;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-pink);
-            background: white;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 25px;
-        }
-
-        .btn-submit {
-            flex: 2;
-            background: var(--primary-pink);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 15px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-cancel {
-            flex: 1;
-            background: #f0f0f0;
-            color: #888;
-            border: none;
-            padding: 12px;
-            border-radius: 15px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* Toast Notification */
-        #toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: var(--dark-pink);
-            color: #fff;
-            text-align: center;
-            border-radius: 50px;
-            padding: 16px;
-            position: fixed;
-            z-index: 200;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            box-shadow: 0 10px 30px rgba(216, 27, 96, 0.3);
-            font-weight: 600;
-        }
-
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-
-        @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
-        /* Footer Total */
-        .footer-total {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--dark-pink);
-            background: var(--glass-bg);
-            padding: 20px;
-            border-radius: 20px;
-            border: 2px solid white;
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; color: #666; }
+        .form-control {
+            width: 100%; padding: 12px 15px; border: 2px solid var(--pale-pink);
+            border-radius: 15px; font-size: 1rem; outline: none; background: #FFFAFB;
         }
+        .form-control:focus { border-color: var(--primary-pink); background: white; }
+        
+        .modal-actions { display: flex; gap: 10px; margin-top: 25px; }
+        .btn-submit { flex: 2; background: var(--primary-pink); color: white; border: none; padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer; }
+        .btn-cancel { flex: 1; background: #f0f0f0; color: #888; border: none; padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer; }
+
+        /* Toast */
+        #toast {
+            visibility: hidden; min-width: 250px; background-color: var(--dark-pink); color: #fff;
+            text-align: center; border-radius: 50px; padding: 16px; position: fixed;
+            z-index: 200; left: 50%; bottom: 30px; transform: translateX(-50%);
+            box-shadow: 0 10px 30px rgba(216, 27, 96, 0.3); font-weight: 600;
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        /* Footer Stats */
+        .footer-stats {
+            margin-top: 40px; text-align: center; background: var(--glass-bg);
+            padding: 20px; border-radius: 20px; border: 2px solid white;
+            display: flex; justify-content: space-around;
+        }
+        .stat-box h3 { font-size: 0.9rem; color: #888; font-weight: 600; }
+        .stat-box p { font-size: 1.3rem; font-weight: 800; color: var(--dark-pink); }
 
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .items-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; } .items-grid { grid-template-columns: 1fr; }
+            .footer-stats { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Efek Salju Bunga -->
     <div id="snow-container"></div>
 
     <div class="app-container">
@@ -387,6 +197,12 @@
             <p class="subtitle">Edisi Spesial Pink & Cantik</p>
         </header>
 
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-shop" onclick="switchTab('shop')">Daftar Belanja</button>
+            <button class="tab-btn" id="tab-bought" onclick="switchTab('bought')">Sudah Dibeli</button>
+        </div>
+
         <div class="action-bar">
             <button class="btn-add" onclick="openModal()">
                 <span>+</span> Tambah Item Baru
@@ -394,15 +210,19 @@
         </div>
 
         <main id="content-area">
-            <!-- Data akan di-render di sini oleh JavaScript -->
+            <!-- Data dirender di sini -->
         </main>
 
-        <div class="footer-total">
-            Total Estimasi: <span id="grand-total">Rp 0</span>
+        <!-- Footer Statistik (Total harga berubah sesuai tab) -->
+        <div class="footer-stats">
+            <div class="stat-box">
+                <h3 id="stat-label">Total Belanja</h3>
+                <p id="grand-total">Rp 0</p>
+            </div>
         </div>
     </div>
 
-    <!-- Modal Form Tambah Data -->
+    <!-- Modal Form -->
     <div class="modal-overlay" id="addModal">
         <div class="modal-content">
             <div class="modal-header">Tambah Item Baru</div>
@@ -413,20 +233,22 @@
                         <option value="Buah-buahan">Buah-buahan</option>
                         <option value="Sayur-sayuran">Sayur-sayuran</option>
                         <option value="Minuman">Minuman</option>
+                        <option value="Bahan Pokok">Bahan Pokok</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Nama Item</label>
                     <input type="text" class="form-control" id="inputName" placeholder="Contoh: Jeruk" required>
+                    <small style="color:var(--primary-pink); font-size:0.8rem;">*Ikon otomatis muncul sesuai nama</small>
                 </div>
                 <div class="form-group">
                     <label>Satuan / Ukuran</label>
-                    <input type="text" class="form-control" id="inputUnit" placeholder="Contoh: 1kg atau 1 paket" required>
+                    <input type="text" class="form-control" id="inputUnit" placeholder="Contoh: 1kg atau 1 buah" required>
                 </div>
                 <div class="form-group">
                     <label>Harga (Rupiah)</label>
-                    <input type="number" class="form-control" id="inputPrice" placeholder="Contoh: 25000" required>
+                    <input type="number" class="form-control" id="inputPrice" placeholder="Contoh: 15000" required>
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn-cancel" onclick="closeModal()">Batal</button>
@@ -436,48 +258,122 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
     <div id="toast">Item berhasil ditambahkan!</div>
 
     <script>
-        // --- DATA AWAL ---
-        // Harga adalah estimasi pasar yang reasonable
-        let inventory = [
-            // Buah-buahan
-            { id: 1, category: 'Buah-buahan', name: 'Alpukat', unit: '1kg', price: 35000, icon: '🥑' },
-            { id: 2, category: 'Buah-buahan', name: 'Apel', unit: '1kg', price: 30000, icon: '🍎' },
-            { id: 3, category: 'Buah-buahan', name: 'Pir', unit: '1kg', price: 45000, icon: '🍐' },
-            { id: 4, category: 'Buah-buahan', name: 'Anggur', unit: '1kg', price: 65000, icon: '🍇' },
+        // --- DATABASE ICON CERDAS (Mapping Nama ke Emoji) ---
+        const iconMap = {
+            // Buah
+            'jeruk': '🍊', 'lemon': '🍋', 'pisang': '🍌', 'semangka': '🍉', 'anggur': '🍇', 
+            'stroberi': '🍓', 'pepaya': '🍈', 'mangga': '🥭', 'ceri': '🍒', 'kiwi': '🥝',
+            'apel': '🍎', 'pir': '🍐', 'alpukat': '🥑', 'nanas': '🍍', 'kelapa': '🥥', 'melon': '🍈',
             
-            // Sayur-sayuran
-            { id: 5, category: 'Sayur-sayuran', name: 'Cabe Merah', unit: '1kg', price: 60000, icon: '🌶️' },
-            { id: 6, category: 'Sayur-sayuran', name: 'Bawang Merah', unit: '1kg', price: 32000, icon: '🧅' },
-            { id: 7, category: 'Sayur-sayuran', name: 'Bawang Putih', unit: '1kg', price: 45000, icon: '🧄' },
-            { id: 8, category: 'Sayur-sayuran', name: 'Tomat', unit: '1kg', price: 12000, icon: '🍅' },
+            // Sayur & Bumbu
+            'tomat': '🍅', 'terong': '🍆', 'jagung': '🌽', 'wortel': '🥕', 'brokoli': '🥦',
+            'jamur': '🍄', 'kentang': '🥔', 'bawang': '🧅', 'bawang putih': '🧄', 'selada': '🥬',
+            'cabe': '🌶️', 'paprika': '🫑', 'bayam': '🥬', 'kangkung': '🥬',
+            
+            // Daging & Seafood
+            'daging': '🥩', 'ayam': '🍗', 'sate': '🍢', 'ikan': '🐟', 'udang': '🦐', 'crab': '🦀',
+            'telur': '🥚',
+            
+            // Minuman & Dairy
+            'susu': '🥛', 'teh': '🍵', 'kopi': '☕', 'jus': '🧃', 'air': '💧', 'bir': '🍺',
+            'wine': '🍷', 'champagne': '🍾', 'vsoy': '🥤',
+            
+            // Makanan Jadi
+            'roti': '🍞', 'keju': '🧀', 'nasi': '🍚', 'mie': '🍜', 'spaghetti': '🍝',
+            'burger': '🍔', 'pizza': '🍕', 'hotdog': '🌭', 'donat': '🍩', 'kue': '🍰',
+            'biskuit': '🍪', 'coklat': '🍫', 'permen': '🍬', 'popcorn': '🍿'
+        };
 
-            // Minuman
-            { id: 9, category: 'Minuman', name: 'Vsoy Kacang Hijau', unit: '5 botol', price: 45000, icon: '🥤' }
+        // Fungsi untuk mencari icon berdasarkan nama input
+        function getIcon(name, category) {
+            const lowerName = name.toLowerCase();
+            // Cek apakah nama input mengandung kata kunci di iconMap
+            for (const key in iconMap) {
+                if (lowerName.includes(key)) {
+                    return iconMap[key];
+                }
+            }
+
+            // Jika tidak ketemu di iconMap, pakai default kategori
+            if (category === 'Buah-buahan') return '🍓';
+            if (category === 'Sayur-sayuran') return '🥬';
+            if (category === 'Minuman') return '🥛';
+            if (category === 'Daging' || category === 'Ikan') return '🥩';
+            return '📦'; // Default universal
+        }
+
+        // --- DATA STATE ---
+        let inventory = [
+            { id: 1, category: 'Buah-buahan', name: 'Alpukat', unit: '1kg', price: 35000, isBought: false, icon: '🥑' },
+            { id: 2, category: 'Buah-buahan', name: 'Apel', unit: '1kg', price: 30000, isBought: false, icon: '🍎' },
+            { id: 3, category: 'Buah-buahan', name: 'Pir', unit: '1kg', price: 45000, isBought: false, icon: '🍐' },
+            { id: 4, category: 'Buah-buahan', name: 'Anggur', unit: '1kg', price: 65000, isBought: false, icon: '🍇' },
+            
+            { id: 5, category: 'Sayur-sayuran', name: 'Cabe Merah', unit: '1kg', price: 60000, isBought: false, icon: '🌶️' },
+            { id: 6, category: 'Sayur-sayuran', name: 'Bawang Merah', unit: '1kg', price: 32000, isBought: false, icon: '🧅' },
+            { id: 7, category: 'Sayur-sayuran', name: 'Bawang Putih', unit: '1kg', price: 45000, isBought: false, icon: '🧄' },
+            { id: 8, category: 'Sayur-sayuran', name: 'Tomat', unit: '1kg', price: 12000, isBought: false, icon: '🍅' },
+
+            { id: 9, category: 'Minuman', name: 'Vsoy Kacang Hijau', unit: '5 botol', price: 45000, isBought: false, icon: '🥤' }
         ];
 
-        // --- FORMAT RUPIAH ---
+        let currentTab = 'shop'; // 'shop' (Belum dibeli) atau 'bought' (Sudah dibeli)
+
+        // --- CORE FUNCTIONS ---
         const formatRupiah = (number) => {
             return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0
+                style: 'currency', currency: 'IDR', minimumFractionDigits: 0
             }).format(number);
         };
 
-        // --- RENDER DATA ---
         const contentArea = document.getElementById('content-area');
         const grandTotalEl = document.getElementById('grand-total');
+        const statLabel = document.getElementById('stat-label');
+        const btnTabShop = document.getElementById('tab-shop');
+        const btnTabBought = document.getElementById('tab-bought');
+
+        function switchTab(tab) {
+            currentTab = tab;
+            // Update UI Tombol Tab
+            if (tab === 'shop') {
+                btnTabShop.classList.add('active');
+                btnTabBought.classList.remove('active');
+                statLabel.innerText = "Estimasi Belanja";
+            } else {
+                btnTabShop.classList.remove('active');
+                btnTabBought.classList.add('active');
+                statLabel.innerText = "Total Pengeluaran";
+            }
+            renderData();
+        }
 
         function renderData() {
             contentArea.innerHTML = '';
-            let totalHargaSemua = 0;
+            let totalHarga = 0;
 
-            // Mengelompokkan data berdasarkan kategori
-            const categories = [...new Set(inventory.map(item => item.category))];
+            // Filter data berdasarkan Tab Aktif
+            const visibleItems = inventory.filter(item => {
+                if (currentTab === 'shop') return !item.isBought;
+                if (currentTab === 'bought') return item.isBought;
+            });
+
+            // Jika kosong
+            if (visibleItems.length === 0) {
+                contentArea.innerHTML = `
+                    <div style="text-align:center; padding:40px; color:var(--primary-pink);">
+                        <h3>Belum ada barang di sini</h3>
+                        <p>${currentTab === 'shop' ? 'Yuk tambah belanjaan!' : 'Anda belum membeli apapun.'}</p>
+                    </div>
+                `;
+                grandTotalEl.innerText = formatRupiah(0);
+                return;
+            }
+
+            // Kelompokkan kategori
+            const categories = [...new Set(visibleItems.map(item => item.category))];
 
             categories.forEach(cat => {
                 const section = document.createElement('div');
@@ -491,19 +387,31 @@
                 const grid = document.createElement('div');
                 grid.className = 'items-grid';
 
-                const itemsInCategory = inventory.filter(item => item.category === cat);
+                const itemsInCategory = visibleItems.filter(item => item.category === cat);
 
                 itemsInCategory.forEach(item => {
-                    totalHargaSemua += item.price;
+                    totalHarga += item.price;
                     
                     const card = document.createElement('div');
                     card.className = 'item-card';
+                    
+                    // Ceklis checked jika di tab "bought", unchecked jika di tab "shop"
+                    const isChecked = item.isBought ? 'checked' : '';
+
                     card.innerHTML = `
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" class="custom-checkbox" 
+                                onchange="toggleBought(${item.id})" ${isChecked}>
+                        </div>
+                        
+                        <div class="card-details">
+                            <span class="item-icon">${item.icon}</span>
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-unit">${item.unit}</span>
+                            <span class="item-price">${formatRupiah(item.price)}</span>
+                        </div>
+
                         <button class="delete-btn" onclick="deleteItem(${item.id})">&times;</button>
-                        <span class="item-icon">${item.icon}</span>
-                        <div class="item-name">${item.name}</div>
-                        <div class="item-unit">${item.unit}</div>
-                        <div class="item-price">${formatRupiah(item.price)}</div>
                     `;
                     grid.appendChild(card);
                 });
@@ -512,28 +420,40 @@
                 contentArea.appendChild(section);
             });
 
-            grandTotalEl.innerText = formatRupiah(totalHargaSemua);
+            grandTotalEl.innerText = formatRupiah(totalHarga);
         }
 
-        // --- MANAJEMEN MODAL (TAMBAH DATA) ---
+        // --- INTERAKSI: CENTANG ITEM ---
+        window.toggleBought = function(id) {
+            const item = inventory.find(i => i.id === id);
+            if (item) {
+                item.isBought = !item.isBought; // Ubah status
+                // Render ulang agar item pindah tab secara visual
+                renderData();
+                
+                // Feedback visual kecil
+                const toastMsg = document.getElementById("toast");
+                toastMsg.innerText = item.isBought ? "Masuk keranjang 'Sudah Dibeli'" : "Kembali ke 'Daftar Belanja'";
+                toastMsg.className = "show";
+                setTimeout(function(){ toastMsg.className = toastMsg.className.replace("show", ""); }, 2000);
+            }
+        };
+
+        window.deleteItem = function(id) {
+            if(confirm('Hapus item ini permanen?')) {
+                inventory = inventory.filter(item => item.id !== id);
+                renderData();
+            }
+        };
+
+        // --- TAMBAH ITEM BARU (Auto Icon Logic) ---
         const modal = document.getElementById('addModal');
         const form = document.getElementById('addItemForm');
 
-        function openModal() {
-            modal.style.display = 'flex';
-        }
+        function openModal() { modal.style.display = 'flex'; }
+        function closeModal() { modal.style.display = 'none'; form.reset(); }
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-        function closeModal() {
-            modal.style.display = 'none';
-            form.reset();
-        }
-
-        // Menutup modal jika klik di luar area konten
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // --- TAMBAH ITEM BARU ---
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -542,77 +462,53 @@
             const unit = document.getElementById('inputUnit').value;
             const price = parseFloat(document.getElementById('inputPrice').value);
 
-            // Menentukan emoji sederhana berdasarkan kategori
-            let icon = '📦';
-            if (category === 'Buah-buahan') icon = '🍓';
-            if (category === 'Sayur-sayuran') icon = '🥬';
-            if (category === 'Minuman') icon = '🥛';
+            // Gunakan fungsi getIcon untuk mencari icon otomatis
+            const icon = getIcon(name, category);
 
             const newItem = {
-                id: Date.now(), // Unique ID sederhana
+                id: Date.now(),
                 category: category,
                 name: name,
                 unit: unit,
                 price: price,
+                isBought: false,
                 icon: icon
             };
 
             inventory.push(newItem);
-            inventory.sort((a, b) => a.category.localeCompare(b.category)); // Sort agar kategori terkelompok rapi
+            inventory.sort((a, b) => a.category.localeCompare(b.category));
             
-            renderData();
+            // Jika user sedang buka tab "Sudah Dibeli", pindahkan ke tab "Belanja" agar item baru kelihatan
+            if(currentTab === 'bought') switchTab('shop');
+            else renderData();
+
             closeModal();
-            showToast();
+            
+            const toast = document.getElementById("toast");
+            toast.innerText = "Item berhasil ditambahkan!";
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
         });
 
-        // --- HAPUS ITEM ---
-        window.deleteItem = function(id) {
-            if(confirm('Apakah Anda yakin ingin menghapus item ini?')) {
-                inventory = inventory.filter(item => item.id !== id);
-                renderData();
-            }
-        };
-
-        // --- TOAST NOTIFICATION ---
-        function showToast() {
-            const x = document.getElementById("toast");
-            x.className = "show";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        }
-
-        // --- EFEK SALJU BUNGA (Snow Flower) ---
+        // --- SALJU BUNGA ---
         function createSnowFlake() {
             const snowContainer = document.getElementById('snow-container');
             const flake = document.createElement('div');
             flake.className = 'flake';
-            flake.innerHTML = '🌸'; // Emoji bunga sakura
-            
-            // Posisi random
+            flake.innerHTML = '🌸'; 
             flake.style.left = Math.random() * 100 + 'vw';
-            // Ukuran random
-            const size = Math.random() * 1.5 + 0.5; // 0.5rem sampai 2rem
+            const size = Math.random() * 1.5 + 0.5;
             flake.style.fontSize = size + 'rem';
-            // Durasi animasi random
-            const duration = Math.random() * 5 + 5; // 5s sampai 10s
+            const duration = Math.random() * 5 + 5;
             flake.style.animationDuration = duration + 's';
-            
-            // Opacity random
             flake.style.opacity = Math.random();
-
             snowContainer.appendChild(flake);
-
-            // Hapus elemen setelah animasi selesai agar memory tidak penuh
-            setTimeout(() => {
-                flake.remove();
-            }, duration * 1000);
+            setTimeout(() => { flake.remove(); }, duration * 1000);
         }
-
-        // Jalankan efek salju setiap 300ms
         setInterval(createSnowFlake, 300);
 
-        // --- INISIALISASI ---
+        // Init
         renderData();
-
     </script>
 </body>
 </html>
