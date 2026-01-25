@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Belanja Barbie Digital Pro</title>
+    <title>Daftar Belanja Barbie Smart</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -13,8 +13,7 @@
             --pale-pink: #FFE6EB;
             --dark-pink: #D81B60;
             --white: #FFFFFF;
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.8);
             --shadow: 0 8px 32px 0 rgba(255, 105, 180, 0.15);
         }
 
@@ -28,15 +27,14 @@
             position: relative;
         }
 
-        /* Salju Bunga */
+        /* Efek Salju Bunga */
         #snow-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 1; overflow: hidden;
         }
         .flake {
-            position: absolute; top: -10px; color: var(--soft-pink);
-            font-size: 1.5rem; user-select: none;
-            animation: fall linear infinite;
+            position: absolute; top: -10px; color: var(--soft-pink); font-size: 1.5rem;
+            user-select: none; animation: fall linear infinite;
             filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.8));
         }
         @keyframes fall {
@@ -44,103 +42,106 @@
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
         }
 
-        .app-container { position: relative; z-index: 2; max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        /* Container Utama */
+        .app-container {
+            position: relative; z-index: 2; max-width: 900px; margin: 40px auto; padding: 0 20px;
+        }
 
-        /* Header */
         header {
             text-align: center; margin-bottom: 30px;
             background: var(--glass-bg); backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); padding: 30px;
-            border-radius: 30px; box-shadow: var(--shadow);
+            border: 1px solid white; padding: 25px; border-radius: 30px; box-shadow: var(--shadow);
         }
-        h1 { color: var(--dark-pink); font-weight: 800; font-size: 2.5rem; text-transform: uppercase; }
+        h1 { color: var(--dark-pink); font-weight: 800; font-size: 2.2rem; margin-bottom: 5px; }
         p.subtitle { color: var(--primary-pink); font-weight: 600; }
 
-        /* Tab Navigation */
+        /* TAB NAVIGATION */
         .tabs {
             display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
         }
         .tab-btn {
-            padding: 12px 30px; border: none; border-radius: 50px;
-            font-weight: 700; font-size: 1.1rem; cursor: pointer;
-            transition: all 0.3s; background: white; color: #999;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            flex: 1; max-width: 200px; padding: 12px; border: none; background: white;
+            color: var(--soft-pink); border-radius: 50px; font-weight: 700; font-size: 1rem;
+            cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         .tab-btn.active {
-            background: linear-gradient(45deg, var(--primary-pink), var(--dark-pink));
-            color: white; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            background: var(--primary-pink); color: white; box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
             transform: scale(1.05);
         }
 
-        /* Action Bar */
+        /* Tombol Tambah Data */
         .action-bar { text-align: right; margin-bottom: 20px; }
         .btn-add {
             background: linear-gradient(45deg, var(--primary-pink), var(--dark-pink));
-            color: white; border: none; padding: 12px 30px; font-size: 1rem;
-            font-weight: 700; border-radius: 50px; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4); transition: all 0.3s;
-            display: inline-flex; align-items: center; gap: 10px;
+            color: white; border: none; padding: 10px 25px; font-size: 0.95rem; font-weight: 700;
+            border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            transition: all 0.3s;
         }
-        .btn-add:hover { transform: translateY(-3px); }
+        .btn-add:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5); }
 
-        /* Category Sections */
-        .category-section { margin-bottom: 30px; animation: fadeIn 0.5s ease; }
+        /* Konten Tab */
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
+
+        /* Kategori & Grid */
+        .category-section { margin-bottom: 30px; }
         .category-title {
-            background: white; display: inline-block; padding: 8px 20px;
-            border-radius: 50px; color: var(--dark-pink); font-weight: 800;
-            font-size: 1.1rem; margin-bottom: 15px; border: 2px solid var(--pale-pink);
+            background: white; display: inline-block; padding: 8px 20px; border-radius: 50px;
+            color: var(--dark-pink); font-weight: 800; font-size: 1rem;
+            margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
-        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-
-        /* Cards */
+        /* Kartu Item */
         .item-card {
-            background: var(--glass-bg); backdrop-filter: blur(10px);
-            border: 1px solid white; border-radius: 20px; padding: 20px;
-            position: relative; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
+            background: var(--glass-bg); border: 1px solid white; border-radius: 20px;
+            padding: 20px; position: relative; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
             display: flex; align-items: center; gap: 15px;
         }
-        .item-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3); }
+        .item-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); }
 
         /* Custom Checkbox */
-        .checkbox-wrapper { position: relative; width: 25px; height: 25px; flex-shrink: 0; }
+        .checkbox-wrapper { position: relative; width: 24px; height: 24px; flex-shrink: 0; }
         .custom-checkbox {
-            appearance: none; width: 100%; height: 100%;
-            border: 2px solid var(--primary-pink); border-radius: 8px;
-            cursor: pointer; transition: all 0.2s; display: grid; place-content: center;
-        }
-        .custom-checkbox::before {
-            content: "✔"; color: white; font-size: 14px; transform: scale(0);
-            transition: 0.2s transform ease-in-out;
+            appearance: none; width: 24px; height: 24px; border: 2px solid var(--soft-pink);
+            border-radius: 50%; cursor: pointer; transition: all 0.2s; background: white;
         }
         .custom-checkbox:checked {
-            background-color: var(--primary-pink); border-color: var(--primary-pink);
+            background: var(--primary-pink); border-color: var(--primary-pink);
         }
-        .custom-checkbox:checked::before { transform: scale(1); }
+        /* Icon ceklis di dalam checkbox */
+        .custom-checkbox::after {
+            content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: white; font-size: 14px; display: none;
+        }
+        .custom-checkbox:checked::after { display: block; }
 
-        /* Card Content */
-        .card-details { flex-grow: 1; }
-        .item-icon { font-size: 2rem; display: block; margin-bottom: 5px; }
-        .item-name { font-size: 1rem; font-weight: 700; color: #333; display: block; }
-        .item-unit { font-size: 0.85rem; color: #888; }
-        .item-price { 
-            font-size: 1rem; font-weight: 800; color: var(--dark-pink); 
-            margin-top: 5px; display: block; 
-        }
+        /* Item Details */
+        .item-details { flex-grow: 1; }
+        .item-header { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+        .item-icon { font-size: 1.8rem; }
+        .item-name { font-size: 1.1rem; font-weight: 700; color: #333; }
+        .item-unit { font-size: 0.8rem; color: #888; background: var(--pale-pink); padding: 3px 8px; border-radius: 8px; }
+        .item-price { font-size: 1rem; font-weight: 700; color: var(--dark-pink); text-align: right; }
+        
+        /* Style untuk item yang sudah dibeli (transparan / dicoret) */
+        .item-card.bought { opacity: 0.7; background: rgba(255, 255, 255, 0.5); }
+        .item-card.bought .item-name { text-decoration: line-through; color: #999; }
 
         .delete-btn {
-            background: none; border: none; color: #ffcad4; cursor: pointer; font-size: 1.2rem;
-            transition: color 0.2s;
+            background: #FFEBEE; border: none; color: #FF5252; width: 30px; height: 30px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; transition: background 0.2s;
         }
-        .delete-btn:hover { color: red; }
+        .delete-btn:hover { background: #FFCDD2; }
 
-        /* Modal & Form (Same as before) */
+        /* Modal & Form */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 192, 203, 0.4); backdrop-filter: blur(5px);
-            z-index: 100; display: none; align-items: center; justify-content: center;
+            background: rgba(255, 192, 203, 0.4); backdrop-filter: blur(5px); z-index: 100;
+            display: none; align-items: center; justify-content: center;
         }
         .modal-content {
             background: white; padding: 30px; border-radius: 30px; width: 90%; max-width: 450px;
@@ -152,11 +153,10 @@
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; color: #666; }
         .form-control {
-            width: 100%; padding: 12px 15px; border: 2px solid var(--pale-pink);
-            border-radius: 15px; font-size: 1rem; outline: none; background: #FFFAFB;
+            width: 100%; padding: 12px 15px; border: 2px solid var(--pale-pink); border-radius: 15px;
+            font-size: 1rem; outline: none; transition: border-color 0.3s; background: #FFFAFB;
         }
         .form-control:focus { border-color: var(--primary-pink); background: white; }
-        
         .modal-actions { display: flex; gap: 10px; margin-top: 25px; }
         .btn-submit { flex: 2; background: var(--primary-pink); color: white; border: none; padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer; }
         .btn-cancel { flex: 1; background: #f0f0f0; color: #888; border: none; padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer; }
@@ -164,90 +164,85 @@
         /* Toast */
         #toast {
             visibility: hidden; min-width: 250px; background-color: var(--dark-pink); color: #fff;
-            text-align: center; border-radius: 50px; padding: 16px; position: fixed;
-            z-index: 200; left: 50%; bottom: 30px; transform: translateX(-50%);
-            box-shadow: 0 10px 30px rgba(216, 27, 96, 0.3); font-weight: 600;
+            text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 200;
+            left: 50%; bottom: 30px; transform: translateX(-50%); box-shadow: 0 10px 30px rgba(216, 27, 96, 0.3); font-weight: 600;
         }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-        /* Footer Stats */
-        .footer-stats {
-            margin-top: 40px; text-align: center; background: var(--glass-bg);
-            padding: 20px; border-radius: 20px; border: 2px solid white;
-            display: flex; justify-content: space-around;
+        .total-display {
+            margin-top: 20px; text-align: right; font-size: 1.2rem; font-weight: 700; color: var(--dark-pink);
+            background: rgba(255,255,255,0.6); padding: 10px 20px; border-radius: 20px;
         }
-        .stat-box h3 { font-size: 0.9rem; color: #888; font-weight: 600; }
-        .stat-box p { font-size: 1.3rem; font-weight: 800; color: var(--dark-pink); }
-
+        
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; } .items-grid { grid-template-columns: 1fr; }
-            .footer-stats { flex-direction: column; gap: 15px; }
+            .item-card { padding: 15px; }
+            .item-icon { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Efek Salju -->
     <div id="snow-container"></div>
 
     <div class="app-container">
         <header>
             <h1>Daftar Belanja</h1>
-            <p class="subtitle">Edisi Spesial Pink & Cantik</p>
+            <p class="subtitle">Smart Icon & Tracking</p>
         </header>
 
-        <!-- Tab Navigation -->
+        <!-- Navigasi Tab -->
         <div class="tabs">
-            <button class="tab-btn active" id="tab-shop" onclick="switchTab('shop')">Daftar Belanja</button>
-            <button class="tab-btn" id="tab-bought" onclick="switchTab('bought')">Sudah Dibeli</button>
-        </div>
-
-        <div class="action-bar">
-            <button class="btn-add" onclick="openModal()">
-                <span>+</span> Tambah Item Baru
+            <button class="tab-btn active" onclick="switchTab('shopping')" id="tab-btn-shopping">
+                🛍 Belum Dibeli
+            </button>
+            <button class="tab-btn" onclick="switchTab('purchased')" id="tab-btn-purchased">
+                ✅ Sudah Dibeli
             </button>
         </div>
 
-        <main id="content-area">
-            <!-- Data dirender di sini -->
-        </main>
-
-        <!-- Footer Statistik (Total harga berubah sesuai tab) -->
-        <div class="footer-stats">
-            <div class="stat-box">
-                <h3 id="stat-label">Total Belanja</h3>
-                <p id="grand-total">Rp 0</p>
+        <!-- Tab 1: Belum Dibeli -->
+        <div id="tab-shopping" class="tab-content active">
+            <div class="action-bar">
+                <button class="btn-add" onclick="openModal()">+ Tambah Item</button>
             </div>
+            <div id="content-shopping"></div>
+            <div class="total-display">Total Belanja: <span id="total-shopping">Rp 0</span></div>
+        </div>
+
+        <!-- Tab 2: Sudah Dibeli -->
+        <div id="tab-purchased" class="tab-content">
+            <div id="content-purchased"></div>
+            <div class="total-display">Total Dibayar: <span id="total-purchased">Rp 0</span></div>
         </div>
     </div>
 
-    <!-- Modal Form -->
+    <!-- Modal Tambah Data -->
     <div class="modal-overlay" id="addModal">
         <div class="modal-content">
-            <div class="modal-header">Tambah Item Baru</div>
+            <h3 style="text-align:center; color:var(--dark-pink); margin-bottom:20px;">Tambah Baru</h3>
             <form id="addItemForm">
                 <div class="form-group">
                     <label>Kategori</label>
-                    <select class="form-control" id="inputCategory" required>
+                    <select class="form-control" id="inputCategory">
                         <option value="Buah-buahan">Buah-buahan</option>
                         <option value="Sayur-sayuran">Sayur-sayuran</option>
                         <option value="Minuman">Minuman</option>
-                        <option value="Bahan Pokok">Bahan Pokok</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Nama Item</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Contoh: Jeruk" required>
-                    <small style="color:var(--primary-pink); font-size:0.8rem;">*Ikon otomatis muncul sesuai nama</small>
+                    <label>Nama Item (Cth: Jeruk, Apel)</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Ketik nama barang..." required>
                 </div>
                 <div class="form-group">
-                    <label>Satuan / Ukuran</label>
-                    <input type="text" class="form-control" id="inputUnit" placeholder="Contoh: 1kg atau 1 buah" required>
+                    <label>Satuan</label>
+                    <input type="text" class="form-control" id="inputUnit" placeholder="1kg / 1 botol" required>
                 </div>
                 <div class="form-group">
-                    <label>Harga (Rupiah)</label>
+                    <label>Harga (Rp)</label>
                     <input type="number" class="form-control" id="inputPrice" placeholder="Contoh: 15000" required>
                 </div>
                 <div class="modal-actions">
@@ -258,200 +253,206 @@
         </div>
     </div>
 
-    <div id="toast">Item berhasil ditambahkan!</div>
+    <div id="toast">Item ditambahkan!</div>
 
     <script>
-        // --- DATABASE ICON CERDAS (Mapping Nama ke Emoji) ---
-        const iconMap = {
+        // --- DATABASE IKON (Keyword Mapping) ---
+        // Ini memetakan kata kunci ke emoji
+        const iconDatabase = {
             // Buah
-            'jeruk': '🍊', 'lemon': '🍋', 'pisang': '🍌', 'semangka': '🍉', 'anggur': '🍇', 
-            'stroberi': '🍓', 'pepaya': '🍈', 'mangga': '🥭', 'ceri': '🍒', 'kiwi': '🥝',
-            'apel': '🍎', 'pir': '🍐', 'alpukat': '🥑', 'nanas': '🍍', 'kelapa': '🥥', 'melon': '🍈',
+            'jeruk': '🍊', 'orange': '🍊', 'manis': '🍊',
+            'apel': '🍎', 'apple': '🍎',
+            'pir': '🍐', 'pear': '🍐',
+            'anggur': '🍇', 'grape': '🍇',
+            'alpukat': '🥑', 'avocado': '🥑',
+            'pisang': '🍌', 'banana': '🍌',
+            'semangka': '🍉', 'melon': '🍈',
+            'stroberi': '🍓', 'strawberry': '🍓',
+            'mangga': '🥭', 'mango': '🥭',
+            'nanas': '🍍', 'pineapple': '🍍',
+            'pepaya': '🍈', 'papaya': '🍈',
+            'lemon': '🍋', 'jeruk nipis': '🍋',
+            'ceri': '🍒', 'cherry': '🍒',
             
-            // Sayur & Bumbu
-            'tomat': '🍅', 'terong': '🍆', 'jagung': '🌽', 'wortel': '🥕', 'brokoli': '🥦',
-            'jamur': '🍄', 'kentang': '🥔', 'bawang': '🧅', 'bawang putih': '🧄', 'selada': '🥬',
-            'cabe': '🌶️', 'paprika': '🫑', 'bayam': '🥬', 'kangkung': '🥬',
+            // Sayur
+            'wortel': '🥕', 'carrot': '🥕',
+            'brokoli': '🥦', 'broccoli': '🥦',
+            'cabai': '🌶️', 'cabe': '🌶️', 'chili': '🌶️',
+            'tomat': '🍅', 'tomato': '🍅',
+            'terong': '🍆', 'eggplant': '🍆',
+            'jagung': '🌽', 'corn': '🌽',
+            'bayam': '🥬', 'sawi': '🥬', 'selada': '🥬', 'lettuce': '🥬',
+            'jamur': '🍄', 'mushroom': '🍄',
+            'bawang': '🧅', 'merah': '🧅', 'putih': '🧄',
+            'kentang': '🥔', 'potato': '🥔',
             
-            // Daging & Seafood
-            'daging': '🥩', 'ayam': '🍗', 'sate': '🍢', 'ikan': '🐟', 'udang': '🦐', 'crab': '🦀',
-            'telur': '🥚',
+            // Minuman
+            'susu': '🥛', 'milk': '🥛',
+            'kopi': '☕', 'coffee': '☕',
+            'teh': '🍵', 'tea': '🍵',
+            'jus': '🧃', 'juice': '🧃',
+            'air': '💧', 'mineral': '💧',
+            'bir': '🍺', 'alkohol': '🍷',
+            'vsoy': '🥤', 'soy': '🥤',
             
-            // Minuman & Dairy
-            'susu': '🥛', 'teh': '🍵', 'kopi': '☕', 'jus': '🧃', 'air': '💧', 'bir': '🍺',
-            'wine': '🍷', 'champagne': '🍾', 'vsoy': '🥤',
-            
-            // Makanan Jadi
-            'roti': '🍞', 'keju': '🧀', 'nasi': '🍚', 'mie': '🍜', 'spaghetti': '🍝',
-            'burger': '🍔', 'pizza': '🍕', 'hotdog': '🌭', 'donat': '🍩', 'kue': '🍰',
-            'biskuit': '🍪', 'coklat': '🍫', 'permen': '🍬', 'popcorn': '🍿'
+            // Default Icons by Category (fallback)
+            'Buah-buahan': '🍓',
+            'Sayur-sayuran': '🥦',
+            'Minuman': '🥤',
+            'Lainnya': '🛍️'
         };
 
-        // Fungsi untuk mencari icon berdasarkan nama input
-        function getIcon(name, category) {
+        // --- FUNGSI MENCARI IKON CERDAS ---
+        function getSmartIcon(name, category) {
             const lowerName = name.toLowerCase();
-            // Cek apakah nama input mengandung kata kunci di iconMap
-            for (const key in iconMap) {
+            
+            // Cari apakah ada kata kunci dalam nama yang cocok dengan database
+            for (const key in iconDatabase) {
                 if (lowerName.includes(key)) {
-                    return iconMap[key];
+                    return iconDatabase[key];
                 }
             }
 
-            // Jika tidak ketemu di iconMap, pakai default kategori
-            if (category === 'Buah-buahan') return '🍓';
-            if (category === 'Sayur-sayuran') return '🥬';
-            if (category === 'Minuman') return '🥛';
-            if (category === 'Daging' || category === 'Ikan') return '🥩';
-            return '📦'; // Default universal
+            // Jika tidak ketemu, pakai default kategori
+            return iconDatabase[category] || '📦';
         }
 
-        // --- DATA STATE ---
+        // --- STATE DATA ---
         let inventory = [
-            { id: 1, category: 'Buah-buahan', name: 'Alpukat', unit: '1kg', price: 35000, isBought: false, icon: '🥑' },
-            { id: 2, category: 'Buah-buahan', name: 'Apel', unit: '1kg', price: 30000, isBought: false, icon: '🍎' },
-            { id: 3, category: 'Buah-buahan', name: 'Pir', unit: '1kg', price: 45000, isBought: false, icon: '🍐' },
-            { id: 4, category: 'Buah-buahan', name: 'Anggur', unit: '1kg', price: 65000, isBought: false, icon: '🍇' },
-            
-            { id: 5, category: 'Sayur-sayuran', name: 'Cabe Merah', unit: '1kg', price: 60000, isBought: false, icon: '🌶️' },
-            { id: 6, category: 'Sayur-sayuran', name: 'Bawang Merah', unit: '1kg', price: 32000, isBought: false, icon: '🧅' },
-            { id: 7, category: 'Sayur-sayuran', name: 'Bawang Putih', unit: '1kg', price: 45000, isBought: false, icon: '🧄' },
-            { id: 8, category: 'Sayur-sayuran', name: 'Tomat', unit: '1kg', price: 12000, isBought: false, icon: '🍅' },
-
-            { id: 9, category: 'Minuman', name: 'Vsoy Kacang Hijau', unit: '5 botol', price: 45000, isBought: false, icon: '🥤' }
+            { id: 1, category: 'Buah-buahan', name: 'Alpukat', unit: '1kg', price: 35000, icon: '🥑', isBought: false },
+            { id: 2, category: 'Buah-buahan', name: 'Apel', unit: '1kg', price: 30000, icon: '🍎', isBought: false },
+            { id: 3, category: 'Buah-buahan', name: 'Pir', unit: '1kg', price: 45000, icon: '🍐', isBought: false },
+            { id: 4, category: 'Buah-buahan', name: 'Anggur', unit: '1kg', price: 65000, icon: '🍇', isBought: false },
+            { id: 5, category: 'Sayur-sayuran', name: 'Cabe Merah', unit: '1kg', price: 60000, icon: '🌶️', isBought: false },
+            { id: 6, category: 'Sayur-sayuran', name: 'Bawang Merah', unit: '1kg', price: 32000, icon: '🧅', isBought: false },
+            { id: 7, category: 'Sayur-sayuran', name: 'Bawang Putih', unit: '1kg', price: 45000, icon: '🧄', isBought: false },
+            { id: 8, category: 'Sayur-sayuran', name: 'Tomat', unit: '1kg', price: 12000, icon: '🍅', isBought: false },
+            { id: 9, category: 'Minuman', name: 'Vsoy Kacang Hijau', unit: '5 botol', price: 45000, icon: '🥤', isBought: false }
         ];
 
-        let currentTab = 'shop'; // 'shop' (Belum dibeli) atau 'bought' (Sudah dibeli)
-
-        // --- CORE FUNCTIONS ---
+        // --- FUNGSI UTILITAS ---
         const formatRupiah = (number) => {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency', currency: 'IDR', minimumFractionDigits: 0
-            }).format(number);
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
         };
 
-        const contentArea = document.getElementById('content-area');
-        const grandTotalEl = document.getElementById('grand-total');
-        const statLabel = document.getElementById('stat-label');
-        const btnTabShop = document.getElementById('tab-shop');
-        const btnTabBought = document.getElementById('tab-bought');
+        // --- RENDER DATA ---
+        const render = () => {
+            const containerShopping = document.getElementById('content-shopping');
+            const containerPurchased = document.getElementById('content-purchased');
+            const totalShoppingEl = document.getElementById('total-shopping');
+            const totalPurchasedEl = document.getElementById('total-purchased');
 
-        function switchTab(tab) {
-            currentTab = tab;
-            // Update UI Tombol Tab
-            if (tab === 'shop') {
-                btnTabShop.classList.add('active');
-                btnTabBought.classList.remove('active');
-                statLabel.innerText = "Estimasi Belanja";
-            } else {
-                btnTabShop.classList.remove('active');
-                btnTabBought.classList.add('active');
-                statLabel.innerText = "Total Pengeluaran";
-            }
-            renderData();
-        }
+            containerShopping.innerHTML = '';
+            containerPurchased.innerHTML = '';
 
-        function renderData() {
-            contentArea.innerHTML = '';
-            let totalHarga = 0;
+            let sumShopping = 0;
+            let sumPurchased = 0;
 
-            // Filter data berdasarkan Tab Aktif
-            const visibleItems = inventory.filter(item => {
-                if (currentTab === 'shop') return !item.isBought;
-                if (currentTab === 'bought') return item.isBought;
-            });
-
-            // Jika kosong
-            if (visibleItems.length === 0) {
-                contentArea.innerHTML = `
-                    <div style="text-align:center; padding:40px; color:var(--primary-pink);">
-                        <h3>Belum ada barang di sini</h3>
-                        <p>${currentTab === 'shop' ? 'Yuk tambah belanjaan!' : 'Anda belum membeli apapun.'}</p>
-                    </div>
-                `;
-                grandTotalEl.innerText = formatRupiah(0);
-                return;
-            }
-
-            // Kelompokkan kategori
-            const categories = [...new Set(visibleItems.map(item => item.category))];
+            // Kelompokkan berdasarkan kategori
+            const categories = [...new Set(inventory.map(i => i.category))];
 
             categories.forEach(cat => {
-                const section = document.createElement('div');
-                section.className = 'category-section';
+                // Filter item per kategori
+                const itemsInCat = inventory.filter(i => i.category === cat);
                 
-                const title = document.createElement('div');
-                title.className = 'category-title';
-                title.innerText = cat;
-                section.appendChild(title);
+                // Pisahkan yang sudah dibeli dan belum
+                const toBuy = itemsInCat.filter(i => !i.isBought);
+                const bought = itemsInCat.filter(i => i.isBought);
 
-                const grid = document.createElement('div');
-                grid.className = 'items-grid';
+                if (toBuy.length > 0) {
+                    sumShopping += toBuy.reduce((acc, curr) => acc + curr.price, 0);
+                    const section = createCategorySection(cat, toBuy, false);
+                    containerShopping.appendChild(section);
+                }
 
-                const itemsInCategory = visibleItems.filter(item => item.category === cat);
-
-                itemsInCategory.forEach(item => {
-                    totalHarga += item.price;
-                    
-                    const card = document.createElement('div');
-                    card.className = 'item-card';
-                    
-                    // Ceklis checked jika di tab "bought", unchecked jika di tab "shop"
-                    const isChecked = item.isBought ? 'checked' : '';
-
-                    card.innerHTML = `
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" class="custom-checkbox" 
-                                onchange="toggleBought(${item.id})" ${isChecked}>
-                        </div>
-                        
-                        <div class="card-details">
-                            <span class="item-icon">${item.icon}</span>
-                            <span class="item-name">${item.name}</span>
-                            <span class="item-unit">${item.unit}</span>
-                            <span class="item-price">${formatRupiah(item.price)}</span>
-                        </div>
-
-                        <button class="delete-btn" onclick="deleteItem(${item.id})">&times;</button>
-                    `;
-                    grid.appendChild(card);
-                });
-
-                section.appendChild(grid);
-                contentArea.appendChild(section);
+                if (bought.length > 0) {
+                    sumPurchased += bought.reduce((acc, curr) => acc + curr.price, 0);
+                    const section = createCategorySection(cat, bought, true);
+                    containerPurchased.appendChild(section);
+                }
             });
 
-            grandTotalEl.innerText = formatRupiah(totalHarga);
-        }
+            totalShoppingEl.innerText = formatRupiah(sumShopping);
+            totalPurchasedEl.innerText = formatRupiah(sumPurchased);
+        };
 
-        // --- INTERAKSI: CENTANG ITEM ---
-        window.toggleBought = function(id) {
+        const createCategorySection = (category, items, isBoughtTab) => {
+            const section = document.createElement('div');
+            section.className = 'category-section';
+            
+            const title = document.createElement('div');
+            title.className = 'category-title';
+            title.innerText = category;
+            section.appendChild(title);
+
+            const grid = document.createElement('div');
+            grid.className = 'items-grid';
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `item-card ${item.isBought ? 'bought' : ''}`;
+                
+                // Jika di tab "Sudah Dibeli", checkboxnya dicentang dan disabled (opsional, tapi kita biarkan bisa uncheck)
+                const checkedAttr = item.isBought ? 'checked' : '';
+
+                card.innerHTML = `
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="custom-checkbox" 
+                            onchange="toggleBought(${item.id})" ${checkedAttr}>
+                    </div>
+                    <span class="item-icon">${item.icon}</span>
+                    <div class="item-details">
+                        <div class="item-header">
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-unit">${item.unit}</span>
+                        </div>
+                        <div class="item-price">${formatRupiah(item.price)}</div>
+                    </div>
+                    <button class="delete-btn" onclick="deleteItem(${item.id})">&times;</button>
+                `;
+                grid.appendChild(card);
+            });
+
+            section.appendChild(grid);
+            return section;
+        };
+
+        // --- LOGIKA TAB ---
+        window.switchTab = (tabName) => {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            if (tabName === 'shopping') {
+                document.getElementById('tab-shopping').classList.add('active');
+                document.getElementById('tab-btn-shopping').classList.add('active');
+            } else {
+                document.getElementById('tab-purchased').classList.add('active');
+                document.getElementById('tab-btn-purchased').classList.add('active');
+            }
+        };
+
+        // --- LOGIKA INTERAKSI ---
+        window.toggleBought = (id) => {
             const item = inventory.find(i => i.id === id);
             if (item) {
-                item.isBought = !item.isBought; // Ubah status
-                // Render ulang agar item pindah tab secara visual
-                renderData();
-                
-                // Feedback visual kecil
-                const toastMsg = document.getElementById("toast");
-                toastMsg.innerText = item.isBought ? "Masuk keranjang 'Sudah Dibeli'" : "Kembali ke 'Daftar Belanja'";
-                toastMsg.className = "show";
-                setTimeout(function(){ toastMsg.className = toastMsg.className.replace("show", ""); }, 2000);
+                item.isBought = !item.isBought;
+                render(); // Re-render untuk memindahkan item ke tab yang sesuai
             }
         };
 
-        window.deleteItem = function(id) {
-            if(confirm('Hapus item ini permanen?')) {
-                inventory = inventory.filter(item => item.id !== id);
-                renderData();
+        window.deleteItem = (id) => {
+            if(confirm('Hapus item ini secara permanen?')) {
+                inventory = inventory.filter(i => i.id !== id);
+                render();
             }
         };
 
-        // --- TAMBAH ITEM BARU (Auto Icon Logic) ---
+        // --- LOGIKA MODAL & TAMBAH ---
         const modal = document.getElementById('addModal');
         const form = document.getElementById('addItemForm');
 
-        function openModal() { modal.style.display = 'flex'; }
-        function closeModal() { modal.style.display = 'none'; form.reset(); }
+        window.openModal = () => modal.style.display = 'flex';
+        window.closeModal = () => { modal.style.display = 'none'; form.reset(); };
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
         form.addEventListener('submit', (e) => {
@@ -462,53 +463,50 @@
             const unit = document.getElementById('inputUnit').value;
             const price = parseFloat(document.getElementById('inputPrice').value);
 
-            // Gunakan fungsi getIcon untuk mencari icon otomatis
-            const icon = getIcon(name, category);
+            // Panggil fungsi Smart Icon
+            const icon = getSmartIcon(name, category);
 
             const newItem = {
                 id: Date.now(),
-                category: category,
-                name: name,
-                unit: unit,
-                price: price,
-                isBought: false,
-                icon: icon
+                category,
+                name,
+                unit,
+                price,
+                icon,
+                isBought: false // Default masuk tab "Belum Dibeli"
             };
 
             inventory.push(newItem);
             inventory.sort((a, b) => a.category.localeCompare(b.category));
             
-            // Jika user sedang buka tab "Sudah Dibeli", pindahkan ke tab "Belanja" agar item baru kelihatan
-            if(currentTab === 'bought') switchTab('shop');
-            else renderData();
-
+            render();
             closeModal();
-            
-            const toast = document.getElementById("toast");
-            toast.innerText = "Item berhasil ditambahkan!";
-            toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+            showToast();
         });
 
-        // --- SALJU BUNGA ---
+        function showToast() {
+            const x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(() => { x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+        // --- SALJU ---
         function createSnowFlake() {
-            const snowContainer = document.getElementById('snow-container');
+            const container = document.getElementById('snow-container');
             const flake = document.createElement('div');
             flake.className = 'flake';
-            flake.innerHTML = '🌸'; 
+            flake.innerHTML = '🌸';
             flake.style.left = Math.random() * 100 + 'vw';
-            const size = Math.random() * 1.5 + 0.5;
-            flake.style.fontSize = size + 'rem';
-            const duration = Math.random() * 5 + 5;
-            flake.style.animationDuration = duration + 's';
+            flake.style.fontSize = (Math.random() * 1.5 + 0.5) + 'rem';
+            flake.style.animationDuration = (Math.random() * 5 + 5) + 's';
             flake.style.opacity = Math.random();
-            snowContainer.appendChild(flake);
-            setTimeout(() => { flake.remove(); }, duration * 1000);
+            container.appendChild(flake);
+            setTimeout(() => flake.remove(), 10000);
         }
         setInterval(createSnowFlake, 300);
 
         // Init
-        renderData();
+        render();
     </script>
 </body>
 </html>
